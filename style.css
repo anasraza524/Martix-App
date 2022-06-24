@@ -1,0 +1,21 @@
+.MartixInput {
+   
+   
+    padding: 20px;
+           border: 1px solid black;
+           border-radius: 8px;
+           padding: 5px;
+           margin: 5;
+           display: inline-block
+       }
+       .button{
+   
+           background-color: black;
+           color: whitesmoke;
+        padding: 15px;
+        border-radius: 20px;
+        border: white;
+       }
+       body{
+           background-color: rgb(230, 227, 227);
+       }

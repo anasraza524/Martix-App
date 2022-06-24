@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Sum Matrix App</h1>
+
+    <input type="number" required min="2" id="input1">
+    X
+    <input  type="number" required min="2" id="input2">
+
+    <button class="button" onclick="Start()"> Start</button>
+   
+    <br></br><br></br>
+
+
+    <div id="MatrixInput1" class="MartixInput" ></div><br>
+<div id="MatrixInput2"  class="MartixInput"></div>
+<br>
+<button class="button" onclick="sum()">Sum</button>
+<br>
+<button class="button" onclick="mul()">Multiply</button>
+<br><br>
+<div id="MatrixResult" class="MartixInput"></div>
+  
+
+
+<script>
+
+    input1="";
+    input2="";
+function Start(){
+    input1 = document.querySelector("#input1").value;
+    input2 = document.querySelector("#input2").value;
+
+    if(input1 !== input2){
+    alert('Please Enter Same Value in Bothe Matrix')
+return;
+}
+    if(isNaN(input1) || isNaN(input2)){
+    alert('Please Enter Some value in MAtrix')
+return;
+}
+    if(input1 < 2 || input2< 2 ){
+    alert('Please Enter Aleast 2 Value in Matrix')
+
+return;}
+
+    let MatrixInput1 = document.querySelector('#MatrixInput1')
+let MatrixInput2= document.querySelector('#MatrixInput2')
+let MartixResult = document.querySelector('#MatrixResult')
+
+MatrixInput1.innerHTML ="";
+MatrixInput2.innerHTML ="";
+MartixResult.innerHTML ="";
+for( let i =0 ; i< input1;i++){
+    for(let j =0 ; j< input2 ; j++){
+       
+MatrixInput1.innerHTML += `<input type="number" class="MartixInput"  id="martix1-${i}-${j}" >`;
+MatrixInput2.innerHTML += `<input type="number" class="MartixInput" id="martix2-${i}-${j}" >`;
+MartixResult.innerHTML += `<input disabled readonly type="number" class="MartixInput" id="matrixR-${i}-${j}" >`;
+
+}
+MatrixInput1.innerHTML += `<br>`;
+MatrixInput2.innerHTML += `<br>`;
+MartixResult.innerHTML += `<br>`;
+
+}}
+function sum() {
+
+for (let i = 0; i < input1; i++) {
+
+    for (let j = 0; j < input2; j++) {
+        
+
+        document.querySelector(`#matrixR-${i}-${j}`).value =
+            +document.querySelector(`#martix1-${j}-${i}`).value
+        +
+            +document.querySelector(`#martix2-${i}-${j}`).value;
+    }
+}
+
+
+}
+
+function mul() {
+
+let multiply1 = [];
+let multiply2 = [];
+let multiply3=[];
+for (let i = 0; i < input1; i++) {
+    for (let j = 0; j < input2; j++) {
+        let m1value = +document.querySelector(`#martix1-${i}-${j}`).value;
+        let m2value = +document.querySelector(`#martix2-${i}-${j}`).value;
+        multiply1.push(m1value);
+        multiply2.push(m2value);
+        
+    }
+}
+for (let i = 0; i < input1; i++) {
+    for (let j = 0; j < input2; j++) {
+        let m3value = 0;
+        for (let k = 0; k < input1; k++) {
+            m3value += multiply1[i * input1 + k] * multiply2[k * input2 + j];
+        }
+        multiply3.push(m3value);
+    }
+}
+for (let i = 0; i < input1; i++) {
+    for (let j = 0; j < input2; j++) {
+        document.querySelector(`#matrixR-${i}-${j}`).value = multiply3[i * input1 + j];
+    }
+}
+
+}
+</script>
+
+    
+
+
+
+
+</body>
+</html>
